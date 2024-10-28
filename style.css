@@ -1,0 +1,224 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Basic reset */
+
+body {
+  font-family: Arial, sans-serif;
+    color: #333;
+    background: url('img/bg.jpeg') no-repeat center center fixed; /* Replace 'background.jpg' with your image path */
+    background-size: cover;
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0.6); 
+}
+
+/* Main content container for readability */
+.main-content, .section {
+  background-color: #ffffff71; /* Light translucent background */
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  max-width: 900px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Header styling */
+.header {
+  background-color: #003366d9;
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+}
+
+/* Navbar styling */
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    margin: 1rem auto;
+    max-width: 900px;
+  }
+  
+  .nav a {
+    color: #003366;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: background 0.3s, color 0.3s;
+    border-radius: 5px;
+  }
+  
+  .nav a:hover {
+    background-color: #003366;
+    color: white;
+  }
+
+
+/* Main Content */
+.main-content {
+  max-width: 1100px;
+  margin: 2rem auto;
+  background-color:#ffffffe6;
+  padding : 1rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+  font-size: 1.8rem;
+  color: #003366;
+  margin-bottom: 1rem;
+}
+
+.section p {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Slideshow */
+.slideshow-container {
+  position: relative;
+  max-width: 100%;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.mySlides {
+  display: none;
+  position: relative;
+  text-align: center;
+}
+
+.mySlides img {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.text {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #060606;
+  font-size: 1rem;
+  padding: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.559);
+  width: 90%;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 1rem;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  transition: 0.3s;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Testimonials */
+.testimonials {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  padding-top: 1.5rem;
+}
+
+.testimonial {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.testimonial p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.testimonial h3 {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* Footer */
+.footer {
+  background-color: #003366;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 2px solid #ddd;
+  margin-top: 2rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .nav {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .nav a {
+      padding: 0.5rem;
+      width: 100%;
+      text-align: center;
+  }
+
+  .header h1 {
+      font-size: 1.5rem;
+  }
+
+  .section h2 {
+      font-size: 1.5rem;
+  }
+}
+
