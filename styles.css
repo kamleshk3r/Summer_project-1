@@ -8,7 +8,7 @@
   body {
     font-family: Arial, sans-serif;
     color: #333;
-    background: url('img/bg.jpeg') no-repeat center center fixed; /* Replace 'background.jpg' with your image path */
+    background: url('bg.jpeg') no-repeat center center fixed; /* Replace 'background.jpg' with your image path */
     background-size: cover;
     background-blend-mode: overlay;
     background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for readability */
