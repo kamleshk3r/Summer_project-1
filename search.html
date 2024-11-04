@@ -33,11 +33,11 @@
 
         document.getElementById('search-query').textContent = query;
 
-        // Sample data for demonstration
+        // Sample data for demonstration with links to specific scheme pages
         const schemes = [
-            { name: "Janani Suraksha Yojana", description: "Focuses on maternal health." },
-            { name: "Beti Bachao Beti Padhao", description: "Promotes girl child education." },
-            { name: "Stand Up India", description: "Supports women entrepreneurs." },
+            { name: "Janani Suraksha Yojana", description: "Focuses on maternal health.", url: "jsy.html" },
+            { name: "Beti Bachao Beti Padhao", description: "Promotes girl child education.", url: "bbbp.html" },
+            { name: "Stand Up India", description: "Supports women entrepreneurs.", url: "standup.html" },
             // Add more schemes as needed
         ];
 
@@ -50,7 +50,7 @@
         if (filteredSchemes.length > 0) {
             filteredSchemes.forEach(scheme => {
                 const schemeDiv = document.createElement('div');
-                schemeDiv.innerHTML = `<h3>${scheme.name}</h3><p>${scheme.description}</p>`;
+                schemeDiv.innerHTML = `<a href="${scheme.url}"><h3>${scheme.name}</h3><p>${scheme.description}</p></a>`;
                 resultsDiv.appendChild(schemeDiv);
             });
         } else {
