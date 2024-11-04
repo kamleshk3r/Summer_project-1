@@ -3,12 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results - Women Welfare Schemes in India</title>
+    <title>Search Schemes - Women Welfare Schemes in India</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Add some basic styles for the suggestions */
+        .suggestions {
+            border: 1px solid #ccc;
+            max-height: 150px;
+            overflow-y: auto;
+            display: none; /* Hide by default */
+            position: absolute; /* Position suggestions relative to input */
+            background-color: white;
+            z-index: 1;
+        }
+        .suggestion-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
-        <h1>Search Results</h1>
+        <h1>Search Schemes</h1>
     </div>
     <nav class="nav">
         <a href="index.html">Home</a>
@@ -17,9 +36,9 @@
     </nav>
     <div class="main-content">
         <div class="section">
-            <h2>Your Search Query</h2>
-            <p>Results for: <strong id="search-query"></strong></p>
-            <div id="results"></div>
+            <h2>Search for Women Welfare Schemes</h2>
+            <input type="text" id="search-input" placeholder="Type to search..." autocomplete="off">
+            <div class="suggestions" id="suggestions"></div>
         </div>
     </div>
     <div class="footer">
@@ -27,35 +46,50 @@
     </div>
 
     <script>
-        // Get the query from the URL
-        const params = new URLSearchParams(window.location.search);
-        const query = params.get('query');
-
-        document.getElementById('search-query').textContent = query;
-
-        // Sample data for demonstration with links to specific scheme pages
+        // Sample data for demonstration
         const schemes = [
-            { name: "Janani Suraksha Yojana", description: "Focuses on maternal health.", url: "jsy.html" },
-            { name: "Beti Bachao Beti Padhao", description: "Promotes girl child education.", url: "bbbp.html" },
-            { name: "Stand Up India", description: "Supports women entrepreneurs.", url: "standup.html" },
+            { name: "Janani Suraksha Yojana", description: "Focuses on maternal health.", url: "janani_suraksha.html" },
+            { name: "Beti Bachao Beti Padhao", description: "Promotes girl child education.", url: "beti_bachao.html" },
+            { name: "Stand Up India", description: "Supports women entrepreneurs.", url: "stand_up_india.html" },
+            { name: "Pradhan Mantri Matru Vandana Yojana", description: "Provides financial aid to mothers.", url: "matru_vandana.html" },
             // Add more schemes as needed
         ];
 
-        const resultsDiv = document.getElementById('results');
-        const filteredSchemes = schemes.filter(scheme => 
-            scheme.name.toLowerCase().includes(query.toLowerCase()) || 
-            scheme.description.toLowerCase().includes(query.toLowerCase())
-        );
+        const searchInput = document.getElementById('search-input');
+        const suggestionsDiv = document.getElementById('suggestions');
 
-        if (filteredSchemes.length > 0) {
-            filteredSchemes.forEach(scheme => {
-                const schemeDiv = document.createElement('div');
-                schemeDiv.innerHTML = `<a href="${scheme.url}"><h3>${scheme.name}</h3><p>${scheme.description}</p></a>`;
-                resultsDiv.appendChild(schemeDiv);
-            });
-        } else {
-            resultsDiv.innerHTML = '<p>No results found.</p>';
-        }
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            suggestionsDiv.innerHTML = ''; // Clear previous suggestions
+
+            if (query.length > 0) {
+                const filteredSchemes = schemes.filter(scheme => 
+                    scheme.name.toLowerCase().includes(query) || 
+                    scheme.description.toLowerCase().includes(query)
+                );
+
+                if (filteredSchemes.length > 0) {
+                    suggestionsDiv.style.display = 'block'; // Show suggestions
+                    filteredSchemes.forEach(scheme => {
+                        const suggestionItem = document.createElement('div');
+                        suggestionItem.classList.add('suggestion-item');
+                        suggestionItem.innerHTML = `<a href="${scheme.url}">${scheme.name}</a> - ${scheme.description}`;
+                        suggestionsDiv.appendChild(suggestionItem);
+                    });
+                } else {
+                    suggestionsDiv.style.display = 'none'; // Hide if no matches
+                }
+            } else {
+                suggestionsDiv.style.display = 'none'; // Hide suggestions if input is empty
+            }
+        });
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!searchInput.contains(event.target) && !suggestionsDiv.contains(event.target)) {
+                suggestionsDiv.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
