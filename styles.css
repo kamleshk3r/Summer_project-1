@@ -169,3 +169,39 @@
     }
   }
   
+  .search-form {
+    position: relative; /* Ensure the suggestions box positions correctly */
+    width: 300px; /* Adjust as necessary for your design */
+}
+
+  .suggestions-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    position: absolute;
+    width: 100%; /* Ensure it matches the parent container */
+    max-width: 100%; /* Remove any max-width restriction */
+    top: 100%; /* Position it below the input */
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10; /* Ensure visibility above other elements */
+    display: none; /* Initially hidden */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5px 0; /* Add some padding for aesthetics */
+}
+
+.suggestions-box div {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.suggestions-box div:hover {
+    background-color: #f0f0f0; /* Light grey on hover */
+}
+
+.suggestions-box div:active {
+    background-color: #e0e0e0; /* Darker grey on click */
+}
+
+  

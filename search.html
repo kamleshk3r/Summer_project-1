@@ -6,7 +6,7 @@
     <title>Search Schemes - Women Welfare Schemes in India</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Add some basic styles for the suggestions */
+        /* Styles for suggestions */
         .suggestions {
             border: 1px solid #ccc;
             max-height: 150px;
@@ -15,6 +15,7 @@
             position: absolute; /* Position suggestions relative to input */
             background-color: white;
             z-index: 1;
+            width: calc(100% - 20px); /* Adjust width to match input */
         }
         .suggestion-item {
             padding: 10px;
@@ -37,8 +38,10 @@
     <div class="main-content">
         <div class="section">
             <h2>Search for Women Welfare Schemes</h2>
-            <input type="text" id="search-input" placeholder="Type to search..." autocomplete="off">
-            <div class="suggestions" id="suggestions"></div>
+            <div style="position: relative;"> <!-- Position relative for suggestions -->
+                <input type="text" id="search-input" placeholder="Type to search..." autocomplete="off">
+                <div class="suggestions" id="suggestions"></div>
+            </div>
         </div>
     </div>
     <div class="footer">
@@ -46,13 +49,27 @@
     </div>
 
     <script>
-        // Sample data for demonstration
         const schemes = [
-            { name: "Janani Suraksha Yojana", description: "Focuses on maternal health.", url: "janani_suraksha.html" },
-            { name: "Beti Bachao Beti Padhao", description: "Promotes girl child education.", url: "beti_bachao.html" },
-            { name: "Stand Up India", description: "Supports women entrepreneurs.", url: "stand_up_india.html" },
-            { name: "Pradhan Mantri Matru Vandana Yojana", description: "Provides financial aid to mothers.", url: "matru_vandana.html" },
-            // Add more schemes as needed
+            { name: "Janani Suraksha Yojana", description: "Focuses on maternal health.", url: "jsy.html" },
+            { name: "Beti Bachao Beti Padhao", description: "Promotes girl child education.", url: "bbbp.html" },
+            { name: "Stand Up India", description: "Supports women entrepreneurs.", url: "standup.html" },
+            { name: "Pradhan Mantri Matru Vandana Yojana", description: "Financial aid for mothers.", url: "pmmvy.html" },
+            { name: "Mahila E-Haat", description: "Supports women entrepreneurs online.", url: "meh.html" },
+            { name: "One Stop Centre Scheme", description: "Support for women facing violence.", url: "osc.html" },
+            { name: "Rashtriya Mahila Kosh", description: "Emergency response for women.", url: "rmk.html" },
+            { name: "National Scheme of Incentive to Girls for Secondary Education", description: "Education for rural girls.", url: "nsigse.html" },
+            { name: "Sukanya Samriddhi Yojana", description: "Savings scheme for girl child.", url: "ssy.html" },
+            { name: "Pradhan Mantri Kaushal Vikas Yojana", description: "Skill development for youth.", url: "pmkvy.html" },
+            { name: "Mahila Shakti Kendra", description: "Aid for low-income women.", url: "msk.html" },
+            { name: "Swadhar Greh", description: "Skill development for youth.", url: "sg.html" },
+            { name: "Mudra Yojana for Women", description: "Recognizes women's achievements.", url: "my.html" },
+            { name: "Self Help Groups under National Rural Livelihood Mission", description: "Encourages education and welfare of girls.", url: "shg.html" },
+            { name: "Indira Awaas Yojana", description: "Empowers women through self-help groups.", url: "iay.html" },
+            { name: "Integrated Child Development Services", description: "Employment guarantee for rural households.", url: "icds.html" },
+            { name: "Pradhan Mantri Awas Yojana", description: "Housing for rural women.", url: "pmay.html" },
+            { name: "UJJAWALA Scheme", description: "Support for pregnant women.", url: "ujjawala.html" },
+            { name: "Nirbhaya Fund", description: "Encourages the birth of girl children.", url: "nirbhaya.html" },
+            { name: "National Nutrition Mission POSHAN Abhiyaan", description: "Nutrition program for women and children.", url: "poshan.html" },
         ];
 
         const searchInput = document.getElementById('search-input');
@@ -73,7 +90,10 @@
                     filteredSchemes.forEach(scheme => {
                         const suggestionItem = document.createElement('div');
                         suggestionItem.classList.add('suggestion-item');
-                        suggestionItem.innerHTML = `<a href="${scheme.url}">${scheme.name}</a> - ${scheme.description}`;
+                        suggestionItem.innerHTML = `<a href="${scheme.url}" style="text-decoration: none; color: black;">${scheme.name}</a> - ${scheme.description}`;
+                        suggestionItem.onclick = () => {
+                            window.location.href = scheme.url; // Navigate to scheme page on click
+                        };
                         suggestionsDiv.appendChild(suggestionItem);
                     });
                 } else {

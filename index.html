@@ -14,12 +14,13 @@
         <a href="index.html">Home</a>
         <a href="schemes.html">Schemes</a>
         <a href="feedback.html">Feedback</a>
-        <form action="search.html" method="GET" class="search-form">
-            <input type="text" name="query" placeholder="Search schemes..." required>
-            <button type="submit">Search</button>
-        </form>        
     </nav>
     <div class="main-content">
+        <form class="search-form" onsubmit="return false;">
+            <input type="text" class="search-input" placeholder="Search schemes..." required>
+            <button type="button" onclick="searchSchemes()">Search</button>
+            <div id="search-results" class="suggestions-box"></div>
+        </form>        
         <div class="section">
             <h2>Introduction</h2>
             <p>The Government of India has launched various welfare schemes to empower and support women across different sectors. These initiatives aim to address challenges in health, education, employment, and social welfare, striving to create an inclusive and equitable society.</p>
@@ -142,6 +143,67 @@
             slideIndex += n - 1;
             showSlides();
         }
-    </script>
+
+        const schemes = [
+    { name: "Janani Suraksha Yojana", description: "Focuses on maternal health.", url: "jsy.html" },
+    { name: "Beti Bachao Beti Padhao", description: "Promotes girl child education.", url: "bbbp.html" },
+    { name: "Stand Up India", description: "Supports women entrepreneurs.", url: "standup.html" },
+    { name: "Pradhan Mantri Matru Vandana Yojana", description: "Financial aid for mothers.", url: "pmmvy.html" },
+    { name: "Mahila E-Haat", description: "Supports women entrepreneurs online.", url: "meh.html" },
+    { name: "One Stop Centre Scheme", description: "Support for women facing violence.", url: "osc.html" },
+    { name: "Rashtriya Mahila Kosh", description: "Provides microfinance to women for self-employment and livelihood projects.", url: "rmk.html" },
+    { name: "National Scheme of Incentive to Girls for Secondary Education", description: "Encourages families to educate girls through financial incentives.", url: "nsigse.html" },
+    { name: "Sukanya Samriddhi Yojana", description: "Savings scheme for the girl child.", url: "ssy.html" },
+    { name: "Pradhan Mantri Kaushal Vikas Yojana", description: "Enhances employability through skill development and vocational training.", url: "pmkvy.html" },
+    { name: "Mahila Shakti Kendra", description: "Empowers women by providing resources and services at the grassroots level.", url: "msk.html" },
+    { name: "Swadhar Greh", description: "Provides shelter and rehabilitation for women in distress.", url: "sg.html" },
+    { name: "Mudra Yojana for Women", description: "Supports women's entrepreneurship and recognizes achievements.", url: "my.html" },
+    { name: "Self Help Groups under National Rural Livelihood Mission", description: "Promotes education and welfare of women.", url: "shg.html" },
+    { name: "Indira Awaas Yojana", description: "Aims to provide housing for women, especially those in self-help groups.", url: "iay.html" },
+    { name: "Integrated Child Development Services", description: "Focuses on health, nutrition, and education for children and mothers.", url: "icds.html" },
+    { name: "Pradhan Mantri Awas Yojana", description: "Provides affordable housing for women.", url: "pmay.html" },
+    { name: "UJJAWALA Scheme", description: "Supports women in distress, particularly those facing trafficking.", url: "ujjawala.html" },
+    { name: "Nirbhaya Fund", description: "Provides safety and security for women in India.", url: "nirbhaya.html" },
+    { name: "National Nutrition Mission POSHAN Abhiyaan", description: "Nutrition program aimed at improving the nutritional status of women and children.", url: "poshan.html" },
+];
+
+
+function searchSchemes() {
+    const query = document.querySelector('.search-input').value.toLowerCase();
+    const results = schemes.filter(scheme => 
+        scheme.name.toLowerCase().includes(query) || 
+        scheme.description.toLowerCase().includes(query)
+    );
+
+    const resultsContainer = document.getElementById('search-results');
+    resultsContainer.innerHTML = '';
+
+    if (results.length > 0) {
+        results.forEach(scheme => {
+            const schemeElement = document.createElement('div');
+            schemeElement.textContent = `${scheme.name}: ${scheme.description}`;
+            schemeElement.onclick = () => {
+                window.location.href = scheme.url; // Redirect to the scheme page
+            };
+            resultsContainer.appendChild(schemeElement);
+        });
+        resultsContainer.style.display = 'block'; // Show suggestions
+    } else {
+        resultsContainer.innerHTML = '<div>No results found.</div>';
+        resultsContainer.style.display = 'block'; // Show suggestions
+    }
+}
+
+// Attach the search function to the input event for live suggestions
+document.querySelector('.search-input').addEventListener('input', searchSchemes);
+
+// Handle search button click to redirect to results.html
+document.querySelector('.search-form button').onclick = () => {
+    const query = document.querySelector('.search-input').value;
+    if (query) {
+        window.location.href = `results.html?query=${encodeURIComponent(query)}`; // Redirect to results page
+    }
+};
+</script>
 </body>
 </html>
